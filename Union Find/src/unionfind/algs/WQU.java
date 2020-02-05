@@ -16,6 +16,7 @@ public class WQU {
 	
 	public Integer root(int p) {
 		while (connections[p] != p) {
+			connections[p] = connections[connections[p]];
 			p = connections[p];
 		}
 		return p;
