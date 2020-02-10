@@ -98,6 +98,9 @@ public class Percolation {
 		} catch (IndexOutOfBoundsException e) {
 
 		}
+		catch (IllegalArgumentException e) {
+			
+		}
 
 	}
 
