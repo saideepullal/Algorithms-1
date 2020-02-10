@@ -6,6 +6,7 @@ public class Percolation {
 	private boolean grid[][];
 	private int maxSize;
 	private WeightedQuickUnionUF weightedQuickUnionUF;
+	private WeightedQuickUnionUF weightedQuickUnionUFisFull; 
 	private int bottomCommonPoint;
 	private int topCommonPoint = 0;
 	private int noOfOpenSites = 0;
@@ -20,6 +21,7 @@ public class Percolation {
 		}
 		grid = new boolean[n][n];
 		weightedQuickUnionUF = new WeightedQuickUnionUF(n * n + 2);
+		weightedQuickUnionUFisFull = new WeightedQuickUnionUF(n * n + 1);
 
 	}
 
@@ -31,6 +33,7 @@ public class Percolation {
 		if (row == 1) {
 			int weightedQuickUnionGridIndex = getWeightedUnionGridIndex(row, col);
 			weightedQuickUnionUF.union(weightedQuickUnionGridIndex, topCommonPoint);
+			weightedQuickUnionUFisFull.union(weightedQuickUnionGridIndex, topCommonPoint);
 		}
 		if (row == maxSize) {
 			int weightedQuickUnionGridIndex = getWeightedUnionGridIndex(row, col);
@@ -63,7 +66,7 @@ public class Percolation {
 			throw new IllegalArgumentException();
 		}
 		int weightedIndex = getWeightedUnionGridIndex(row, col);
-		if (weightedQuickUnionUF.find(weightedIndex) == weightedQuickUnionUF.find(topCommonPoint)) {
+		if (weightedQuickUnionUFisFull.find(weightedIndex) == weightedQuickUnionUFisFull.find(topCommonPoint)) {
 			return true;
 		} else {
 			return false;
@@ -93,6 +96,7 @@ public class Percolation {
 			if (isOpen(row, column)) {
 				int consecutiveIndex = getWeightedUnionGridIndex(row, column);
 				weightedQuickUnionUF.union(WQFgridIndex, consecutiveIndex);
+				weightedQuickUnionUFisFull.union(WQFgridIndex, consecutiveIndex);
 			}
 
 		} catch (IndexOutOfBoundsException e) {
