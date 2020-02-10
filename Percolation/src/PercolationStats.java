@@ -20,8 +20,8 @@ public class PercolationStats {
 		for (int i = 0; i < trials; i++) {
 			Percolation percolation = new Percolation(n);
 			while (!percolation.percolates()) {
-				int row = StdRandom.uniform(n);
-				int column = StdRandom.uniform(n);
+				int row = 1 + StdRandom.uniform(n); // to avoid illegalArgument
+				int column = 1 +StdRandom.uniform(n);
 				percolation.open(row, column);
 				noOfOpenCells = percolation.numberOfOpenSites();
 			}
@@ -63,6 +63,10 @@ public class PercolationStats {
 	public static void main(String[] args) {
 		int n = Integer.parseInt(args[0]);
 		int trials = Integer.parseInt(args[1]);
+		
+		// Tester code for manual
+		//int n = 20;
+		//int trials = 10;
 
 		PercolationStats stats = new PercolationStats(n, trials);
 		System.out.println(stats.mean());
