@@ -2,6 +2,4 @@
 /Union\ Find/.settings/*
 Union Find/.project
 Union Find/.classpath
-Percolation/.classpath
-Percolation/.project
-Percolation/.settings/org.eclipse.jdt.core.prefs
+*.class
